@@ -55,11 +55,11 @@ whether you hit them:
 
 <!-- Your criterion. It must name a number. -->
 
-
+Test accuracy is at least **0.60** on all three seeds.
 
 **Why this target:**
 
-
+Always guessing `critique` already scores 0.48, since critique is 48% of my 202 posts, so the real floor is 0.48, not 0.33. 0.60 is about four more correct posts out of a ~31-post test split. That's a clear step above the majority guess, and it's low enough to hold on the worst of three seeds rather than just the best.
 
 ---
 
@@ -67,11 +67,11 @@ whether you hit them:
 
 <!-- Your criterion. -->
 
-
+F1 is at least **0.65** for `critique` and at least **0.45** for each of `hot_take` and `reaction`, on all three seeds.
 
 **Why this target:**
 
-
+`critique` has about 15 posts in the test split, so its F1 is stable enough to hold to a higher bar. `hot_take` and `reaction` have about 8 each, so one wrong post moves recall by about 12 points. Their targets are looser because their scores will swing between seeds.
 
 ---
 
@@ -79,11 +79,11 @@ whether you hit them:
 
 <!-- Your criterion. -->
 
-
+The model predicts `critique` for **no more than 65%** of test posts, on all three seeds.
 
 **Why this target:**
 
-
+`critique` is 48% of the data. If predictions drift far above that share, the model is falling back on the majority label instead of learning the other two, even if accuracy still looks acceptable.
 
 ---
 
@@ -91,11 +91,11 @@ whether you hit them:
 
 <!-- Your criterion. -->
 
-
+My labels agree with the staff labels on at least **70%** of the 30 agreement posts (21 of 30).
 
 **Why this target:**
 
-
+Three labels plus a `hot_take`/`reaction` boundary that needed a written rule means some disagreement is expected. Below 70% would mean my definitions don't transfer to someone else's labeling, and the model is learning my habits rather than the taxonomy.
 
 ---
 
@@ -103,11 +103,11 @@ whether you hit them:
 
 <!-- Your criterion. -->
 
-
+Accuracy on the model's most-confident third of test posts is at least **0.20** higher than on its least-confident third, on all three seeds.
 
 **Why this target:**
 
-
+Each third is about 10 posts, so 0.20 means at least two more right answers. A gap smaller than that could come from one lucky post. A real gap means the model's confidence is worth looking at when deciding which predictions to trust.
 
 ---
 
