@@ -42,6 +42,14 @@
 <!-- Your community, and what your classifier sorts posts into. Three or four
      sentences. -->
 
+TakeMeter sorts comments from r/books into three kinds of take: `critique`
+(a claim about a book or author backed by a specific reason), `hot_take` (a
+confident verdict with no reason given), and `reaction` (the writer's own
+feelings or experience, with no judgment of the work). It's a DistilBERT model
+fine-tuned on 202 comments I labeled by hand. The hardest line it has to draw
+is between `hot_take` and `reaction`: "I hate the way she writes" is a verdict
+on the book, while "I just haven't fallen in love with her" is only about the
+reader.
 
 
 ---
@@ -265,17 +273,39 @@ recall by 12.5 points, so expect their F1 to swing between seeds next unit.
 
 **Moment 1**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* Options for a `hot_take`/`reaction` decision rule that
+  would match how I had already labelled my dataset.
+- *What came back:* Three candidate rules, each with the rows it would flip.
+  A: only negative verdicts are hot takes (flips 1 row). B: any verdict on the
+  work, positive or negative, is a hot take (flips about 5). C: personal
+  framing ("I hate…") makes it a reaction (flips about 5 the other way). It
+  also pointed out that my existing labels treated enthusiasm as `reaction`
+  but negative verdicts as `hot_take`.
+- *What I changed:* I chose B, because it works the same way for positive and
+  negative opinions. I rewrote the `reaction` definition to exclude judgments
+  of the work, and relabelled five posts ("so so so good!", "amazing",
+  "perfect", "brilliant", "to me they're just…boring") from `reaction` to
+  `hot_take`.
 
 **Moment 2**
 
-- *What I asked for:*
-- *What came back:*
-- *What I changed:*
+- *What I asked for:* A cold relabel of 20 randomly chosen posts using only my
+  written definitions and decision rule, compared against my earlier labels.
+- *What came back:* 19 of 20 matched. The one disagreement was the Rothfuss
+  post ("never going to finish… teasing for 12 years"), which I had labelled
+  `hot_take` and the cold pass called `critique`.
+- *What I changed:* I kept `critique` for that post. Under my own definition,
+  "a fact" counts as support, and 12 years of teasing is a fact behind the
+  claim. My earlier label had reacted to the tone, not the content.
 
 **Pre-labelling disclosure:**
+No batch was pre-labelled by a model. I labelled all 202 posts by hand in an
+earlier pass. An AI tool was used afterwards to (1) recheck labels against my
+Milestone 2 rule, which changed 6 rows, (2) run the 20-row cold pass described
+above, which changed 1 row, and (3) help draft the label definitions,
+candidate distinctions, and acceptance criteria. Every changed row was read and
+approved, and each is marked "AI-assisted, checked" or `cold` in the `note`
+column of `labels.csv`.
 
 <!-- ═══════════════════════ UNIT 6 — THE TEST ═══════════════════════
 
