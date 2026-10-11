@@ -54,6 +54,29 @@
      The decision rule is worth a point on its own and it's the thing most
      people leave out. Every taxonomy has a hardest boundary. Name yours. -->
 
+### Candidate distinctions (Milestone 1)
+
+Things I could point at while reading r/books comments, before settling on labels:
+
+1. **Gives a reason or evidence, or just asserts.** Some comments back a claim
+   with an anecdote, a price, a named character, or a list of reasons ("not the
+   best reading experience, not the best option for convenience, and not
+   competitive enough on price"). Others state the claim and stop ("Missouri is
+   governed by ghouls").
+2. **About me, or about the world.** Some comments are mostly the writer's own
+   feelings or experience ("I miss paperbacks", "it makes me sad tbh"). Others
+   make a claim about books, readers, or the industry.
+3. **Hedged, or stated as fact.** Some comments soften their claim ("I think",
+   "I wonder if", "maybe"). Others don't. In my data, 29% of critiques hedge
+   but only 4% of hot takes (2 of 46) do.
+4. **Length.** Supported arguments take more words. Median length is 58 words
+   for critique, 36 for reaction, and 22 for hot_take.
+
+One distinction I expected and didn't find: absolute words ("never", "always",
+"only", "every") seemed like a hot-take marker, but they appear in 19% of hot
+takes and 38–39% of critiques and reactions. Tone words alone don't separate
+the labels. Whether there's support behind the claim does.
+
 ### `label_one`
 
 **Definition:**
