@@ -77,33 +77,68 @@ One distinction I expected and didn't find: absolute words ("never", "always",
 takes and 38–39% of critiques and reactions. Tone words alone don't separate
 the labels. Whether there's support behind the claim does.
 
-### `label_one`
+### `critique`
 
-**Definition:**
-
-**Example 1:**
->
-
-**Example 2:**
->
-
-### `label_two`
-
-**Definition:**
+**Definition:** Makes a claim about a book, author, or reading and backs it with
+at least one specific reason: a named feature of the text (a character, scene,
+style, or structure), a fact, or a firsthand example.
 
 **Example 1:**
->
+> I normally love Backmann, but My Friends was disappointing. His books dint always have a plot but make me laugh while breaking my heart. My Friends did neither.
 
 **Example 2:**
->
+> I don't like the wheel of time. I think Rand is too whiny and I really dislike how all the women fall in love with him immediately and that practically all they talk about is Rand.
+
+### `hot_take`
+
+**Definition:** States a confident verdict or generalization about a book,
+author, genre, or readers, with no specific reason offered.
+
+**Example 1:**
+> there are no flaws in Catch-22
+
+**Example 2:**
+> Margaret Atwood has seriously lost her touch.
+
+### `reaction`
+
+**Definition:** Describes the writer's own feelings, experience, or reading
+habits, without judging the quality of a work or author and without making a
+claim about the world that someone else could argue with.
+
+**Example 1:**
+> Same. I cried for days already after the first few chapters
+
+**Example 2:**
+> For me I just can't read books written in the present tense no matter how good they are.
 
 ### The hardest boundary
 
-**Which two labels:**
+**Which two labels:** `hot_take` vs. `reaction`
+
+**The borderline post:**
+> I have tried several times and just cannot read Sally Rooney. I hate the way she writes.
 
 **The decision rule I used every time:**
 <!-- e.g. "If the post names a specific checkable fact, it's `analysis`, even
      if the tone is heated." -->
+
+If the post judges the quality of a work or author, good or bad ("amazing",
+"perfect", "boring", "overrated", "I hate the way she writes"), with no reason
+given, it's `hot_take`, even when it's framed personally with "I" or "to me".
+If it only reports what happened to the reader (cried, couldn't finish, didn't
+click, read it in two days) and passes no judgment on the work, it's
+`reaction`.
+
+So the borderline post above is `hot_take`: "I hate the way she writes" judges
+Rooney's writing and gives no reason. "I've tried several times and just
+haven't fallen in love" is `reaction`, because it only reports the reader's
+experience.
+
+Applying this rule to my existing labels moved five posts from `reaction` to
+`hot_take`: verdicts like "so so so good!", "amazing", "perfect", "brilliant",
+and "to me they're just…boring". I had been calling enthusiasm `reaction` and
+negative verdicts `hot_take`. The rule treats both the same way.
 
 
 
