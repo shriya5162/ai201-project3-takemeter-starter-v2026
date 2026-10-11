@@ -227,16 +227,29 @@ stands.
 
 <!-- Your starting model, your settings, and anything you changed and why. -->
 
-**Base model:**
+**Base model:** `distilbert-base-uncased`
 
 **Settings:** <!-- epochs, learning rate, batch size, seed -->
+3 epochs, learning rate 2e-5, batch size 16, 128 max tokens, seed 42. Trained
+on CPU (torch 2.14.1+cpu), about 4 minutes.
 
-**Anything I changed from the defaults, and why:**
+**Anything I changed from the defaults, and why:** Nothing. The only edit was
+setting `LABELS` to `["critique", "hot_take", "reaction"]` to match my CSV.
 
 **Split sizes:** <!-- train / val / test, and per-label counts in the test
 split. If a label had fewer than about 8 in test, say so — it explains a lot
 of next unit's variance. -->
+train 140 · val 31 · test 31
 
+| Label | Train | Val | Test |
+|---|---|---|---|
+| `critique` | 68 | 15 | 15 |
+| `hot_take` | 34 | 8 | 8 |
+| `reaction` | 38 | 8 | 8 |
+
+`hot_take` and `reaction` each have exactly 8 posts in the test split, right
+at the edge of what's measurable. One misclassified post moves either label's
+recall by 12.5 points, so expect their F1 to swing between seeds next unit.
 
 
 ---
