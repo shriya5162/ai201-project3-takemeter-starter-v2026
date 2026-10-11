@@ -149,19 +149,38 @@ negative verdicts `hot_take`. The rule treats both the same way.
 <!-- Where you collected from, how you labelled, your counts, and three hard
      cases. -->
 
-**Where the posts came from:**
+**Where the posts came from:** Public comment threads on r/books: discussions
+of specific books and authors, "unpopular opinion" threads, and threads about
+reading habits. 202 whole comments, copied by hand and not trimmed.
 
 **How I labelled them:** <!-- Cold first? Pre-labelled with AI and corrected?
 Say so plainly — the disclosure is required, not penalised. -->
+I labelled the posts by hand in an earlier pass, writing a short reason for
+each in the `note` column. After writing the `hot_take`/`reaction` decision
+rule in Milestone 2, I used an AI tool to recheck my labels against it. That
+moved five posts from `reaction` to `hot_take` and one hard case from
+`reaction` to `critique`. I read and approved each change, and those six rows
+say "AI-assisted, checked" in the note column. I also removed two duplicate
+fragments of one Sanderson comment so the same text couldn't land in both the
+training split and the test split.
+
+**Cold pass:** 20 randomly chosen rows were relabelled blind, from the written
+definitions and decision rule only, and are marked `cold` in the note column.
+This was a TA walkthrough of the milestone, so the cold pass was done by an AI
+tool, not a person. The cold labels matched the earlier pass on 19 of 20.
+The one disagreement was the Rothfuss post ("never going to finish… teasing
+for 12 years"). The earlier pass said `hot_take`, but the 12 years of teasing
+is a fact backing the claim, so the cold pass said `critique`, and that label
+stands.
 
 **Counts per label:**
 
 | Label | Count | Share |
 |---|---|---|
-|  |  |  |
-|  |  |  |
-|  |  |  |
-| **Total** |  | 100% |
+| `critique` | 98 | 48.5% |
+| `reaction` | 54 | 26.7% |
+| `hot_take` | 50 | 24.8% |
+| **Total** | 202 | 100% |
 
 **Three hard cases**
 
@@ -169,25 +188,38 @@ Say so plainly — the disclosure is required, not penalised. -->
      been, and what you chose. These are worth more than the easy 190. -->
 
 **1.**
-> *The post:*
+> *The post:* "I have tried several times and just cannot read Sally Rooney. I hate the way she writes."
 >
-> *Could have been:*
+> *Could have been:* `hot_take` or `reaction`
 >
-> *I chose, because:*
+> *I chose, because:* `hot_take`. It's personal ("I have tried", "I cannot
+> read"), but "I hate the way she writes" passes a verdict on Rooney's writing
+> and gives no reason, which is exactly what my decision rule sends to
+> `hot_take`. A near-identical post that only says "I just haven't fallen in
+> love" with Rooney stays `reaction`, because it judges nothing.
 
 **2.**
-> *The post:*
+> *The post:* "Oh absolutely. It upset me for days, but it was written so beautifully. As the Swedish Academy put it, 'intense poetic prose that confronts historical traumas and exposes the fragility of human life.'"
 >
-> *Could have been:*
+> *Could have been:* `reaction` or `critique` (and arguably `hot_take`)
 >
-> *I chose, because:*
+> *I chose, because:* `critique`. "It upset me for days" is pure `reaction`,
+> but the post goes on to judge the writing ("so beautifully"). Under my rule
+> that rules out `reaction`. It's not `hot_take` either, because it backs the
+> verdict with a quote that names a feature of the text: poetic prose that
+> confronts historical trauma. I originally had it as `reaction` and changed it
+> once the rule was written.
 
 **3.**
-> *The post:*
+> *The post:* "I think you might be on to something. I have a friend whose son loves to read, but she won't allow video games in the house. He can only play at his friends' houses. I wonder if that's why he's such a dedicated reader."
 >
-> *Could have been:*
+> *Could have been:* `critique` or `reaction`
 >
-> *I chose, because:*
+> *I chose, because:* `critique`. It's mostly a personal anecdote, which
+> reads like `reaction`, but the anecdote is offered as evidence for a claim
+> about the world (that no video games makes kids into readers). A firsthand
+> example backing a claim is one of the kinds of support in my `critique`
+> definition, even though the claim is hedged ("I wonder if").
 
 ---
 
