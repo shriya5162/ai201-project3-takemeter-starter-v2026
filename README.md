@@ -321,14 +321,28 @@ column of `labels.csv`.
 
 | Measure | Baseline | Trained | Difference |
 |---|---|---|---|
-| Overall accuracy |  |  |  |
-| Macro F1 |  |  |  |
-| F1 — `label_one` |  |  |  |
-| F1 — `label_two` |  |  |  |
+| Overall accuracy | 0.548 | 0.484 | -0.065 |
+| Macro F1 | 0.366 | 0.217 | -0.149 |
+| F1 — `critique` | 0.698 | 0.652 | -0.046 |
+| F1 — `hot_take` | 0.400 | 0.000 | -0.400 |
+| F1 — `reaction` | 0.000 | 0.000 | +0.000 |
+
+The baseline is `facebook/bart-large-mnli` zero-shot, prompted with the
+definitions in `label_definitions.txt` (copied from the Label Taxonomy above),
+scored on the same 31 held-out posts in `test_split.csv`.
+
+**What my definitions were worth:** I also ran the baseline with bare label
+names and no definitions. It scored 0.355 accuracy and 0.347 macro F1, so the
+definitions added 0.19 accuracy but only 0.02 macro F1. They moved `critique`
+F1 from 0.222 to 0.698 and `hot_take` from 0.273 to 0.400, but dropped
+`reaction` from 0.545 to 0.000. My `reaction` definition mostly says what a
+reaction *isn't* ("without judging… without making a claim…"), and the
+zero-shot model has nothing to match that against.
 
 **What I predicted before I looked:**
-<!-- Milestone 1 asks you to write this BEFORE seeing the trained numbers. A
-     prediction made afterwards isn't one. -->
+The trained model will beat the baseline mainly on `reaction`, where the
+zero-shot model scored 0.000, because 38 training examples teach it what a
+reaction looks like better than a definition built on what it isn't.
 
 **What the gap actually means:**
 <!-- If the baseline matched your trained model, your fine-tuning added
