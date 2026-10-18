@@ -359,27 +359,51 @@ reaction looks like better than a definition built on what it isn't.
 
 | Criterion | Target | Seed 42 | Seed 7 | Seed 2024 | Verdict |
 |---|---|---|---|---|---|
-| 1.  |  |  |  |  |  |
-| 2.  |  |  |  |  |  |
-| 3.  |  |  |  |  |  |
-| 4.  |  |  |  |  |  |
-| 5.  |  |  |  |  |  |
+| 1. Test accuracy | ≥ 0.60 | 0.484 | 0.484 | 0.484 | MISSED |
+| 2. Per-label F1 | `critique` ≥ 0.65, `hot_take` ≥ 0.45, `reaction` ≥ 0.45 | 0.652 / 0.000 / 0.000 | 0.652 / 0.000 / 0.000 | 0.652 / 0.000 / 0.000 | MISSED (`critique` met, other two 0.000) |
+| 3. Share predicted `critique` | ≤ 65% | 100% (31/31) | 100% (31/31) | 100% (31/31) | MISSED |
+| 4. Agreement with staff set | ≥ 70% (21/30) | — | — | — | Not measured yet (agreement check is a later milestone) |
+| 5. Confidence gap, most- vs. least-sure third | ≥ 0.20 | 0.80 − 0.10 = 0.70 | 0.80 − 0.10 = 0.70 | 0.80 − 0.20 = 0.60 | MET on paper (see note) |
+
+All three seeds ran on CPU (torch 2.14.1+cpu), 3 epochs, lr 2e-5, batch 16,
+max length 128. Raw numbers are in `results_three_seeds_before.json`.
+
+| Measure | Seed 42 | Seed 7 | Seed 2024 | Spread |
+|---|---|---|---|---|
+| Overall accuracy | 0.484 | 0.484 | 0.484 | 0.000 |
+| Macro F1 | 0.217 | 0.217 | 0.217 | 0.000 |
+| F1 — `critique` | 0.652 | 0.652 | 0.652 | 0.000 |
+| F1 — `hot_take` | 0.000 | 0.000 | 0.000 | 0.000 |
+| F1 — `reaction` | 0.000 | 0.000 | 0.000 | 0.000 |
+
+**The spread is zero, and that is not stability.** On every seed the model
+predicts `critique` for all 31 test posts. Each seed draws different posts,
+but the stratified split gives every test set the same 15 / 8 / 8 label
+counts, so "always `critique`" scores exactly 15/31 = 0.484 every time.
+Identical numbers across seeds are a symptom of the model collapsing to the
+majority label, not evidence that the measure is trustworthy. Accuracy equals
+the majority-guess floor I named in criterion 1.
+
+**Note on criterion 5:** the gap clears 0.20 on all three seeds, but the
+model never predicts anything except `critique`, so "right" only means "this
+post really was a critique." The confidence score is tracking how
+critique-like a post is, which is some signal, but it can't tell a correct
+`hot_take` guess from a wrong one because there are no `hot_take` guesses.
 
 ### Confusion matrix
 
-<!-- ⚠️ TYPED AS A MARKDOWN TABLE. The notebook prints one ready to paste.
-     An image of a matrix earns nothing. -->
+Seed 42 (seeds 7 and 2024 are identical):
 
-| true \ predicted |  |  |  |
+| true \ predicted | critique | hot_take | reaction |
 |---|---|---|---|
-| **** |  |  |  |
-| **** |  |  |  |
-| **** |  |  |  |
+| **critique** | 15 | 0 | 0 |
+| **hot_take** | 8 | 0 | 0 |
+| **reaction** | 8 | 0 | 0 |
 
 **My biggest off-diagonal number, and what it means:**
-<!-- Not "the model made mistakes" — WHICH boundary it didn't learn, and which
-     direction. "7 real analysis posts were called hot_take and only 3 went the
-     other way" is a direction, not just an error rate. -->
+All 8 real `hot_take` posts and all 8 real `reaction` posts were called
+`critique`, with 0 going the other way, so the model learned no boundary at
+all and falls back on the 48% majority label for every post.
 
 
 
